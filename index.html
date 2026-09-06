@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a1f33">
+<title>🏴‍☠️ Tripulación Chekche</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="particulas" aria-hidden="true"></canvas>
+
+<!-- ============ 1. PORTADA ============ -->
+<section class="seccion portada" id="inicio">
+  <div class="portada-fondo" style="background-image:url('Portada.png')"></div>
+  <div class="portada-velo"></div>
+
+  <div class="portada-contenido">
+    <p class="jolly">☠</p>
+    <h1 class="titulo-principal">🏴‍☠️ TRIPULACIÓN<br><span>CHEKCHE</span></h1>
+    <p class="subtitulo">Una aventura que comenzó hace 6 años...</p>
+    <button class="boton" id="btn-comenzar">⚓ COMENZAR AVENTURA</button>
+    <div class="flecha-abajo" aria-hidden="true">︾</div>
+  </div>
+
+  <div class="olas" aria-hidden="true">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path class="ola ola-1" d="M0,60 C150,110 350,10 600,60 C850,110 1050,10 1200,60 L1200,120 L0,120 Z"></path></svg>
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path class="ola ola-2" d="M0,70 C200,20 400,110 600,70 C800,30 1000,110 1200,70 L1200,120 L0,120 Z"></path></svg>
+  </div>
+</section>
+
+<!-- ============ 2. LA CAPITANA ============ -->
+<section class="seccion capitana" id="capitana">
+  <div class="revelar">
+    <h2 class="titulo">👑 CAPITANA LISBET SOTO</h2>
+    <p class="subtitulo-seccion">Mi Chekche ❤️</p>
+  </div>
+
+  <figure class="marco-retrato revelar">
+    <img src="Capitana.png" alt="Capitana Lisbet" loading="lazy">
+  </figure>
+
+  <p class="texto-romantico revelar">
+    De todas las islas que podía encontrar, tuve la suerte de encontrarte a ti.
+  </p>
+
+  <div class="tarjeta-pergamino revelar">
+    <div class="fila"><span>Capitana</span><b>Lisbet</b></div>
+    <div class="fila"><span>Tripulación</span><b>Chekche &amp; Daniel</b></div>
+    <div class="fila"><span>Tiempo de navegación</span><b>6 años</b></div>
+  </div>
+
+  <!-- Mora con pies (Lisbet, 155 cm) y gallo (Daniel, 172 cm) a escala real -->
+  <div class="tripulacion revelar" aria-label="La capitana y su tripulante">
+    <div class="personaje" style="--altura:155">
+      <svg viewBox="0 0 60 90" role="img" aria-label="Mora con pies">
+        <g class="mora">
+          <circle cx="22" cy="30" r="7"/><circle cx="34" cy="27" r="7"/>
+          <circle cx="30" cy="38" r="7.5"/><circle cx="19" cy="42" r="6.5"/>
+          <circle cx="38" cy="38" r="6"/><circle cx="28" cy="22" r="6"/>
+          <path d="M28 15 q4 -7 10 -8 q-3 7 -9 9z" class="hoja"/>
+        </g>
+        <path class="linea" d="M24 48 v10 M34 48 v10"/>
+        <path class="linea" d="M18 58 h12 M30 58 h12"/>
+        <path class="sombrero" d="M12 20 h36 a20 20 0 0 0 -36 0z"/>
+      </svg>
+      <span class="etiqueta">Lisbet · 155 cm</span>
+    </div>
+    <div class="personaje" style="--altura:172">
+      <svg viewBox="0 0 60 100" role="img" aria-label="Gallo">
+        <g class="gallo">
+          <path class="cresta" d="M24 16 q3 -8 7 -3 q4 -7 7 0 q4 -5 4 3z"/>
+          <ellipse cx="32" cy="30" rx="10" ry="9"/>
+          <path class="pico" d="M42 29 l9 3 l-9 3z"/>
+          <ellipse cx="30" cy="55" rx="15" ry="18"/>
+          <path class="cola" d="M15 46 q-14 -8 -13 -24 q8 14 16 16z"/>
+          <circle cx="36" cy="27" r="1.6" class="ojo"/>
+        </g>
+        <path class="linea" d="M25 72 v10 M35 72 v10"/>
+        <path class="linea" d="M19 82 h12 M31 82 h12"/>
+      </svg>
+      <span class="etiqueta">Daniel · 172 cm</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. WANTED ============ -->
+<section class="seccion wanted" id="wanted">
+  <div class="cartel revelar-cartel">
+    <p class="wanted-titulo">WANTED</p>
+    <img src="Se%20busca.png" alt="Cartel de se busca de Lisbet" loading="lazy">
+    <p class="wanted-nombre">LISBET SOTO</p>
+    <p class="wanted-delito">Delito: robarse mi corazón hace 6 años.</p>
+    <p class="wanted-recompensa">RECOMPENSA: ❤️ INFINITA</p>
+    <span class="sello" aria-hidden="true">DEAD OR ALIVE</span>
+  </div>
+</section>
+
+<!-- ============ 4. GRAND LINE ============ -->
+<section class="seccion mapa" id="mapa">
+  <div class="revelar">
+    <h2 class="titulo">🗺️ NUESTRA AVENTURA</h2>
+    <p class="texto-romantico">
+      Llevamos 6 años navegando juntos. Sin mapa, sin log pose, sin saber qué venía después.
+      Y aun así, siempre llegamos al mismo puerto.
+    </p>
+  </div>
+
+  <figure class="marco-mapa revelar">
+    <img src="Mapa.png" alt="Mapa de nuestra aventura" loading="lazy">
+    <svg class="brujula" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="46" class="brujula-borde"/>
+      <circle cx="50" cy="50" r="38" class="brujula-interior"/>
+      <g class="aguja"><path d="M50 14 L57 50 L50 86 L43 50 Z"/></g>
+      <circle cx="50" cy="50" r="4" class="brujula-centro"/>
+    </svg>
+  </figure>
+
+  <ol class="ruta">
+    <li class="etapa revelar"><span class="icono">🏝️</span><b>El encuentro</b><small>La isla donde todo empezó.</small></li>
+    <li class="etapa revelar"><span class="icono">❤️</span><b>Conociéndonos</b><small>Cada día un mapa nuevo.</small></li>
+    <li class="etapa revelar"><span class="icono">🌊</span><b>Superando tormentas</b><small>El barco aguantó porque éramos dos.</small></li>
+    <li class="etapa revelar"><span class="icono">🌱</span><b>Creciendo juntos</b><small>Distintos, pero en el mismo rumbo.</small></li>
+    <li class="etapa revelar"><span class="icono">😂</span><b>Momentos felices</b><small>Risas que valen más que cualquier tesoro.</small></li>
+    <li class="etapa revelar"><span class="icono">🏴‍☠️</span><b>6 años juntos</b><small>Y la tripulación sigue firme.</small></li>
+  </ol>
+
+  <p class="cierre-mapa revelar">Y todavía quedan muchas islas por conocer.</p>
+</section>
+
+<!-- ============ 5. EL TESORO ============ -->
+<section class="seccion tesoro" id="tesoro">
+  <div class="revelar" id="tesoro-pregunta">
+    <h2 class="titulo">💎 ¿Encontraste el One Piece?</h2>
+    <button class="boton boton-dorado" id="btn-tesoro">ABRIR EL VERDADERO TESORO</button>
+  </div>
+
+  <div class="cofre" id="cofre" hidden>
+    <div class="resplandor" aria-hidden="true"></div>
+    <figure class="marco-tesoro">
+      <img src="Tesoro.png" alt="El verdadero tesoro" loading="lazy">
+    </figure>
+
+    <h3 class="titulo-tesoro">EL VERDADERO TESORO</h3>
+    <p class="texto-romantico">
+      No estaba escondido en una isla.<br>
+      No estaba dentro de un cofre.<br>
+      No estaba al final del Grand Line.
+    </p>
+    <p class="texto-destacado">El verdadero tesoro siempre fue encontrarte.</p>
+    <p class="texto-romantico">
+      Gracias por ser mi compañera de aventuras.<br>
+      Después de 6 años, todavía quiero seguir navegando contigo.
+    </p>
+    <p class="felicitacion">Feliz cumpleaños, mi Chekche. ❤️</p>
+  </div>
+</section>
+
+<!-- ============ 6. CARTA FINAL ============ -->
+<section class="seccion carta" id="carta">
+  <article class="pergamino revelar">
+    <h2 class="titulo-carta">Para mi Chekche</h2>
+
+    <!-- ⬇⬇⬇ CAMBIA SOLO ESTE TEXTO POR TU CARTA ⬇⬇⬇ -->
+    <p>
+      Aquí va tu carta. Escríbela con calma, con lo que te salga del corazón:
+      lo que recuerdas del primer día, lo que aprendiste de ella, lo que le
+      quieres desear para este año nuevo de vida.
+    </p>
+    <p>
+      Puedes usar todos los párrafos que quieras. Cada uno va entre
+      &lt;p&gt; y &lt;/p&gt;.
+    </p>
+    <!-- ⬆⬆⬆ CAMBIA SOLO ESTE TEXTO POR TU CARTA ⬆⬆⬆ -->
+
+    <p class="firma">— Daniel, tu tripulante 🐓</p>
+  </article>
+
+  <p class="frase-final revelar">
+    EN ESTE GRAND LINE,<br>MI MAYOR AVENTURA SIEMPRE SERÁS TÚ. ❤️
+  </p>
+
+  <div class="olas olas-final" aria-hidden="true">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path class="ola ola-1" d="M0,60 C150,110 350,10 600,60 C850,110 1050,10 1200,60 L1200,120 L0,120 Z"></path></svg>
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path class="ola ola-2" d="M0,70 C200,20 400,110 600,70 C800,30 1000,110 1200,70 L1200,120 L0,120 Z"></path></svg>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
