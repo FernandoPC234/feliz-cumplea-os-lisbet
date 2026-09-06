@@ -68,16 +68,16 @@
           setTimeout(function () {
             cofre.classList.remove('abriendo');
             cofre.classList.add('abierto');
-          }, 380);
+          }, 480);
         }
 
         cofre.scrollIntoView({ behavior: menosMovimiento ? 'auto' : 'smooth', block: 'center' });
         lluviaDorada();
-        if (!menosMovimiento) setTimeout(lluviaDorada, 700);
+        if (!menosMovimiento) setTimeout(lluviaDorada, 900);
       };
 
       if (menosMovimiento) iniciarApertura();
-      else setTimeout(iniciarApertura, 350);
+      else setTimeout(iniciarApertura, 450);
     });
   }
 
@@ -92,8 +92,8 @@
         x: ancho / 2 + (Math.random() - 0.5) * ancho * 0.7,
         y: -20 - Math.random() * 120,
         r: Math.random() * 2.4 + 1,
-        vy: Math.random() * 1.6 + 0.9,
-        vx: (Math.random() - 0.5) * 0.5,
+        vy: Math.random() * 1.2 + 0.65,
+        vx: (Math.random() - 0.5) * 0.4,
         o: 1
       });
     }
@@ -139,7 +139,7 @@
 
       for (var i = extras.length - 1; i >= 0; i--) {
         var e = extras[i];
-        e.x += e.vx; e.y += e.vy; e.o -= 0.004;
+        e.x += e.vx; e.y += e.vy; e.o -= 0.0032;
         if (e.y > alto + 20 || e.o <= 0) { extras.splice(i, 1); continue; }
         ctx.beginPath();
         ctx.fillStyle = 'rgba(255,226,150,' + Math.max(e.o, 0) + ')';
@@ -235,16 +235,16 @@
           setTimeout(function () {
             cofreUltimo.classList.remove('abriendo');
             cofreUltimo.classList.add('abierto');
-          }, 380);
+          }, 480);
         }
 
         cofreUltimo.scrollIntoView({ behavior: menosMovimiento ? 'auto' : 'smooth', block: 'center' });
         lluviaDorada();
-        if (!menosMovimiento) setTimeout(lluviaDorada, 700);
+        if (!menosMovimiento) setTimeout(lluviaDorada, 900);
       };
 
       if (menosMovimiento) iniciarApertura();
-      else setTimeout(iniciarApertura, 350);
+      else setTimeout(iniciarApertura, 450);
     });
   }
 
