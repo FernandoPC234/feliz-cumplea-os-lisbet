@@ -1,0 +1,558 @@
+/* ===== TRIPULACIÓN CHEKCHE ===== */
+
+:root{
+  --mar-profundo:#08192b;
+  --mar:#0f3350;
+  --atardecer:#e0733c;
+  --dorado:#e3b04b;
+  --rojo:#a4322c;
+  --pergamino:#f3e3c3;
+  --pergamino-oscuro:#dcc59a;
+  --madera:#5c3a21;
+  --espuma:#9fd0d6;
+  --tinta:#3a2515;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:Georgia,"Times New Roman",serif;
+  background:var(--mar-profundo);
+  color:var(--pergamino);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+
+#particulas{
+  position:fixed;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:2;opacity:.55;
+}
+
+/* ---------- estructura ---------- */
+.seccion{
+  position:relative;
+  min-height:100svh;
+  padding:14vh 22px 12vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  z-index:1;
+}
+
+.titulo{
+  font-size:clamp(1.5rem,7vw,2.1rem);
+  letter-spacing:.04em;
+  color:var(--dorado);
+  text-shadow:0 2px 12px rgba(0,0,0,.55);
+  margin-bottom:10px;
+}
+
+.subtitulo-seccion{
+  font-size:1.15rem;color:var(--espuma);
+  font-style:italic;margin-bottom:26px;
+}
+
+.texto-romantico{
+  max-width:34ch;margin:22px auto;
+  font-size:1.06rem;line-height:1.85;
+  color:#f6ecd8;
+}
+
+/* ---------- botones ---------- */
+.boton{
+  display:inline-block;
+  margin-top:26px;
+  padding:18px 30px;
+  min-height:58px;
+  font-family:inherit;
+  font-size:1.05rem;font-weight:bold;letter-spacing:.06em;
+  color:var(--tinta);
+  background:linear-gradient(180deg,#f0d68a,var(--dorado));
+  border:2px solid #7a5a1c;
+  border-radius:40px;
+  box-shadow:0 8px 22px rgba(0,0,0,.45), inset 0 2px 0 rgba(255,255,255,.5);
+  cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.boton:active{transform:translateY(3px) scale(.98);box-shadow:0 4px 12px rgba(0,0,0,.5)}
+.boton:focus-visible{outline:3px solid var(--espuma);outline-offset:4px}
+.boton-dorado{background:linear-gradient(180deg,#ffe9a8,#dfa22e)}
+
+/* ---------- 1. PORTADA ---------- */
+.portada{justify-content:flex-end;padding-bottom:20vh}
+.portada-fondo{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transform:scale(1.04);
+}
+.portada-velo{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,25,43,.55) 0%,rgba(8,25,43,.25) 35%,rgba(8,25,43,.92) 100%);
+}
+.portada-contenido{position:relative;z-index:3}
+
+.bandera{
+  width:64px;height:46px;margin:0 auto 6px;
+  animation:ondear 3.2s ease-in-out infinite;
+  transform-origin:4px 50%;
+}
+.mastil{stroke:var(--pergamino);stroke-width:2;opacity:.8}
+.tela{fill:var(--tinta);stroke:var(--dorado);stroke-width:1.4}
+.calavera{fill:var(--dorado);font-size:14px}
+@keyframes ondear{
+  0%,100%{transform:skewY(0deg) scaleX(1)}
+  50%{transform:skewY(3deg) scaleX(.97)}
+}
+
+.jolly{font-size:2rem;opacity:.75;margin-bottom:6px}
+
+.titulo-principal{
+  font-size:clamp(1.9rem,9vw,3rem);
+  line-height:1.15;letter-spacing:.05em;
+  color:var(--pergamino);
+  text-shadow:0 3px 18px rgba(0,0,0,.8);
+}
+.titulo-principal .linea2{color:var(--dorado);display:inline-block}
+
+.subtitulo{
+  margin-top:14px;font-style:italic;
+  font-size:1.08rem;color:var(--espuma);
+  text-shadow:0 2px 10px rgba(0,0,0,.7);
+}
+
+/* entrada progresiva orquestada (una sola vez, al cargar) */
+.titulo-entrada,.subtitulo-entrada,.boton-entrada{
+  opacity:0;transform:translateY(16px);
+  animation:apareceSuave .9s ease forwards;
+}
+.titulo-entrada{animation-delay:.15s}
+.subtitulo-entrada{animation-delay:.55s}
+.boton-entrada{animation-delay:.9s}
+@keyframes apareceSuave{to{opacity:1;transform:none}}
+
+.flecha-abajo{
+  margin-top:28px;font-size:1.6rem;color:var(--dorado);
+  animation:flotar 2.4s ease-in-out infinite;
+}
+@keyframes flotar{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(8px);opacity:1}}
+
+/* ---------- olas ---------- */
+.olas{position:absolute;bottom:0;left:0;width:100%;height:110px;z-index:2;pointer-events:none}
+.olas svg{position:absolute;bottom:0;left:0;width:220%;height:100%}
+.ola{fill:var(--mar)}
+.ola-1{opacity:.55;animation:oleaje 12s linear infinite}
+.ola-2{fill:var(--mar-profundo);opacity:.85;animation:oleaje 18s linear infinite reverse}
+@keyframes oleaje{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.olas-final{opacity:.6}
+
+/* botón: pequeño efecto de interacción al presionar (viaje que comienza) */
+.boton.zarpando{animation:zarpar .5s ease}
+@keyframes zarpar{
+  0%{transform:scale(1)}
+  40%{transform:scale(.92)}
+  70%{transform:scale(1.04)}
+  100%{transform:scale(1)}
+}
+
+/* ---------- 2. CAPITANA ---------- */
+.capitana{background:radial-gradient(120% 70% at 50% 0%,#123a58 0%,var(--mar-profundo) 70%)}
+
+.marco-retrato{
+  position:relative;
+  width:min(78vw,320px);
+  border:6px solid var(--dorado);
+  border-radius:14px;
+  padding:6px;
+  background:rgba(0,0,0,.3);
+  box-shadow:0 14px 40px rgba(0,0,0,.55);
+}
+.marco-retrato img{width:100%;display:block;border-radius:8px}
+
+.brujula-mini{position:absolute;right:-10px;bottom:-14px;width:52px;height:52px;z-index:2}
+
+.destello{
+  position:absolute;color:var(--dorado);font-size:1rem;
+  opacity:0;animation:destellar 3.6s ease-in-out infinite;
+  pointer-events:none;
+}
+.destello-1{top:8%;left:-6%;animation-delay:.4s}
+.destello-2{bottom:14%;right:-4%;animation-delay:2s;font-size:.8rem}
+@keyframes destellar{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:.9;transform:scale(1.15)}}
+
+.tarjeta-pergamino{
+  width:min(88vw,360px);
+  margin-top:8px;
+  padding:20px 22px;
+  background:linear-gradient(180deg,var(--pergamino),var(--pergamino-oscuro));
+  color:var(--tinta);
+  border-radius:6px;
+  box-shadow:0 10px 28px rgba(0,0,0,.5);
+}
+.tarjeta-pergamino .fila{
+  display:flex;justify-content:space-between;gap:12px;
+  padding:9px 0;font-size:.95rem;
+  border-bottom:1px dashed rgba(90,60,30,.4);
+}
+.tarjeta-pergamino .fila:last-child{border-bottom:none}
+.tarjeta-pergamino span{opacity:.75}
+.tarjeta-pergamino b{color:var(--rojo)}
+
+/* personajes a escala */
+.tripulacion{
+  display:flex;align-items:flex-end;justify-content:center;gap:34px;
+  margin-top:38px;height:200px;
+}
+.personaje{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.personaje svg{height:calc(var(--altura) * 0.95px);width:auto}
+.personaje .etiqueta{
+  margin-top:8px;font-size:.78rem;color:var(--espuma);letter-spacing:.03em;
+}
+.mora circle{fill:#6b3fa0}
+.mora .hoja{fill:#4e8c4a}
+.gallo ellipse{fill:#f4f1ea}
+.gallo .cresta,.gallo .cola{fill:var(--rojo)}
+.gallo .pico{fill:var(--dorado)}
+.gallo .ojo{fill:#20160c}
+.linea{stroke:var(--dorado);stroke-width:3;stroke-linecap:round;fill:none}
+.sombrero{fill:var(--rojo)}
+
+/* ---------- 3. WANTED ---------- */
+.wanted{
+  background:
+    radial-gradient(90% 60% at 50% 20%,rgba(224,115,60,.18),transparent 70%),
+    var(--mar-profundo);
+}
+.cartel{
+  position:relative;
+  width:min(88vw,360px);
+  padding:24px 20px 30px;
+  background:
+    repeating-linear-gradient(0deg,rgba(120,90,50,.05) 0 2px,transparent 2px 4px),
+    linear-gradient(180deg,#f5e6c4,#d9bd8d);
+  color:var(--tinta);
+  border:3px solid #8a6a3a;
+  border-radius:4px;
+  box-shadow:0 18px 42px rgba(0,0,0,.6), inset 0 0 40px rgba(90,60,20,.18);
+  transform:rotate(-1.4deg);
+}
+.cartel img{width:100%;display:block;border:2px solid var(--tinta);margin:14px 0}
+.wanted-titulo{font-size:2.3rem;font-weight:bold;letter-spacing:.16em;color:var(--tinta)}
+.wanted-nombre{font-size:1.4rem;font-weight:bold;letter-spacing:.08em;color:var(--rojo)}
+.wanted-delito{margin-top:8px;font-style:italic;font-size:.98rem}
+.wanted-recompensa{
+  margin-top:14px;padding-top:12px;
+  border-top:2px solid rgba(90,60,30,.45);
+  font-weight:bold;letter-spacing:.05em;
+}
+.sello{
+  position:absolute;top:16px;right:-6px;
+  padding:5px 12px;
+  font-size:.7rem;letter-spacing:.12em;
+  color:var(--rojo);border:2px solid var(--rojo);
+  border-radius:3px;transform:rotate(9deg);opacity:.65;
+}
+
+/* ---------- 4. MAPA ---------- */
+.mapa{background:linear-gradient(180deg,var(--mar-profundo),#0d2a44 55%,var(--mar-profundo))}
+
+.marco-mapa{
+  position:relative;
+  width:min(88vw,380px);
+  margin:26px 0 34px;
+  padding:8px;
+  background:var(--madera);
+  border-radius:10px;
+  box-shadow:0 14px 36px rgba(0,0,0,.55);
+}
+.marco-mapa img{width:100%;display:block;border-radius:5px}
+
+.brujula{
+  position:absolute;right:-14px;bottom:-18px;
+  width:76px;height:76px;
+  filter:drop-shadow(0 6px 12px rgba(0,0,0,.6));
+}
+.brujula-borde{fill:#2a1a0d;stroke:var(--dorado);stroke-width:3}
+.brujula-interior{fill:#f0dfb8}
+.brujula-centro{fill:var(--madera)}
+.aguja path{fill:var(--rojo);transform-origin:50px 50px;animation:girar 22s linear infinite}
+@keyframes girar{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+.decoracion-mapa{
+  position:relative;width:min(92vw,400px);height:0;pointer-events:none;
+}
+.deco{
+  position:absolute;font-size:1.3rem;opacity:.35;
+  animation:derivar 7s ease-in-out infinite;
+}
+.deco-1{left:2%;top:-118px;animation-delay:0s}
+.deco-2{right:6%;top:-96px;animation-delay:1.6s}
+.deco-3{left:12%;top:-58px;animation-delay:3s}
+.deco-4{right:14%;top:-30px;animation-delay:4.4s}
+@keyframes derivar{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(6deg)}}
+
+.ruta{
+  list-style:none;
+  width:min(92vw,400px);
+  position:relative;
+  padding-left:12px;
+  text-align:left;
+}
+.ruta::before{
+  content:"";position:absolute;left:26px;top:12px;bottom:12px;
+  border-left:3px dashed rgba(227,176,75,.45);
+}
+.etapa{
+  position:relative;
+  display:grid;
+  grid-template-columns:56px 1fr;
+  grid-template-areas:"ico nom" "ico des";
+  align-items:center;
+  padding:14px 0;
+}
+.etapa .icono{
+  grid-area:ico;
+  width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;
+  background:var(--mar-profundo);
+  border:2px solid var(--dorado);
+  border-radius:50%;
+  z-index:1;
+}
+.etapa b{grid-area:nom;color:var(--pergamino);font-size:1.05rem;padding-left:8px}
+.etapa small{grid-area:des;color:var(--espuma);opacity:.85;font-size:.85rem;padding-left:8px}
+
+.cierre-mapa{
+  margin-top:30px;font-style:italic;font-size:1.1rem;
+  color:var(--dorado);max-width:30ch;
+}
+
+/* ---------- 5. TESORO ---------- */
+.tesoro{
+  position:relative;
+  background:
+    radial-gradient(80% 50% at 50% 45%,rgba(227,176,75,.16),transparent 70%),
+    var(--mar-profundo);
+}
+
+.boton-brillo{position:relative;animation:pulsoDorado 2.6s ease-in-out infinite}
+@keyframes pulsoDorado{
+  0%,100%{box-shadow:0 8px 22px rgba(0,0,0,.45), 0 0 0 rgba(227,176,75,0)}
+  50%{box-shadow:0 8px 22px rgba(0,0,0,.45), 0 0 26px rgba(227,176,75,.65)}
+}
+
+.velo-tesoro{
+  position:absolute;inset:0;background:#000;opacity:0;
+  pointer-events:none;transition:opacity 1s ease;z-index:0;
+}
+.velo-tesoro.activo{opacity:.45}
+
+.cofre{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+.cofre[hidden]{display:none}
+.cofre.abriendo{animation:sacudirCofre .4s ease}
+.cofre.abierto{animation:abrirCofre 1.1s cubic-bezier(.2,.85,.3,1.1) both}
+@keyframes sacudirCofre{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@keyframes abrirCofre{
+  from{opacity:0;transform:translateY(28px) scale(.9)}
+  to{opacity:1;transform:none}
+}
+.resplandor{
+  position:absolute;top:10%;left:50%;width:320px;height:320px;
+  margin-left:-160px;
+  background:radial-gradient(circle,rgba(255,222,140,.42),transparent 65%);
+  animation:latido 4s ease-in-out infinite;pointer-events:none;
+}
+@keyframes latido{0%,100%{opacity:.5;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}
+
+.marco-tesoro{
+  position:relative;
+  width:min(80vw,330px);
+  border:5px solid var(--dorado);
+  border-radius:12px;padding:6px;
+  background:rgba(0,0,0,.35);
+  box-shadow:0 0 40px rgba(227,176,75,.35);
+}
+.marco-tesoro img{width:100%;display:block;border-radius:7px}
+
+/* ---------- 5B. ÚLTIMO TESORO (Tesoro2.png) ---------- */
+.ultimo-tesoro{
+  background:
+    radial-gradient(75% 55% at 50% 40%,rgba(227,176,75,.14),transparent 70%),
+    var(--mar-profundo);
+}
+
+/* destello de luz que se expande al abrir el cofre final */
+.luz-final{
+  position:absolute;inset:0;z-index:1;
+  background:radial-gradient(circle at 50% 50%,rgba(255,225,150,.9),rgba(255,225,150,.22) 42%,transparent 72%);
+  opacity:0;transform:scale(.3);
+  pointer-events:none;
+}
+.luz-final.activa{animation:expandirLuz 1.3s ease-out forwards}
+@keyframes expandirLuz{
+  0%{opacity:0;transform:scale(.2)}
+  35%{opacity:1;transform:scale(1.15)}
+  100%{opacity:0;transform:scale(1.6)}
+}
+
+/* el marco del último tesoro es más grande y con más presencia */
+.marco-tesoro.marco-tesoro-final{
+  width:min(90vw,460px);
+  border-width:6px;
+  box-shadow:0 0 60px rgba(227,176,75,.45);
+}
+.marco-tesoro.marco-tesoro-final img{
+  width:100%;height:auto;max-height:56vh;
+  object-fit:contain;display:block;border-radius:9px;
+}
+
+/* revelación cinematográfica: fade + zoom suave + glow dorado */
+.imagen-final{
+  animation:revelarImagenFinal 1.4s ease both;
+  animation-delay:.15s;
+  filter:drop-shadow(0 0 26px rgba(227,176,75,.5));
+}
+@keyframes revelarImagenFinal{
+  0%{opacity:0;transform:scale(1.12);filter:brightness(1.9) drop-shadow(0 0 0 rgba(227,176,75,0))}
+  60%{opacity:1}
+  100%{opacity:1;transform:scale(1);filter:brightness(1) drop-shadow(0 0 26px rgba(227,176,75,.5))}
+}
+
+/* chispas flotando alrededor de la imagen, reutilizan la animación .destello */
+.destello-final-1{top:-6%;left:-4%;animation-delay:.3s}
+.destello-final-2{top:6%;right:-6%;font-size:.8rem;animation-delay:1.4s}
+.destello-final-3{bottom:-4%;left:8%;font-size:.85rem;animation-delay:2.2s}
+.destello-final-4{bottom:10%;right:-4%;animation-delay:.9s}
+
+@media (min-width:700px){
+  .marco-tesoro.marco-tesoro-final{width:min(60vw,560px)}
+  .marco-tesoro.marco-tesoro-final img{max-height:64vh}
+}
+
+.titulo-tesoro{
+  margin-top:28px;
+  font-size:clamp(1.4rem,6.5vw,1.9rem);
+  letter-spacing:.09em;color:var(--dorado);
+}
+.texto-destacado{
+  margin:20px auto;max-width:26ch;
+  font-size:1.25rem;font-style:italic;
+  color:#ffe9b0;line-height:1.6;
+}
+.felicitacion{
+  margin-top:26px;font-size:1.3rem;font-weight:bold;
+  color:var(--espuma);max-width:24ch;
+}
+
+/* ---------- 6. CARTA ---------- */
+.carta{background:linear-gradient(180deg,var(--mar-profundo),#0b2237);position:relative;overflow:hidden}
+.pergamino{
+  position:relative;z-index:2;
+  width:min(90vw,420px);
+  padding:34px 26px;
+  background:linear-gradient(180deg,#f6e8ca,#e6d0a5);
+  color:var(--tinta);
+  border-radius:8px;
+  box-shadow:0 16px 40px rgba(0,0,0,.55), 0 0 0 rgba(227,176,75,0);
+  text-align:left;
+}
+.pergamino.visible{box-shadow:0 16px 40px rgba(0,0,0,.55), 0 0 44px rgba(227,176,75,.28)}
+.pergamino p{margin-bottom:16px;font-size:1rem;line-height:1.85}
+.titulo-carta{
+  font-size:1.5rem;color:var(--rojo);
+  text-align:center;margin-bottom:22px;letter-spacing:.03em;
+}
+.firma{text-align:right;font-style:italic;margin-top:24px;margin-bottom:0}
+
+.frase-final{
+  margin-top:44px;
+  font-size:clamp(1.1rem,5.2vw,1.4rem);
+  line-height:1.7;letter-spacing:.05em;
+  color:var(--dorado);
+  text-shadow:0 2px 14px rgba(0,0,0,.6);
+  position:relative;z-index:2;
+}
+
+/* ---------- Easter egg ---------- */
+.easter-egg{
+  position:relative;z-index:2;
+  margin-top:34px;
+  padding:10px 16px;
+  background:transparent;border:1px dashed rgba(227,176,75,.4);
+  border-radius:30px;
+  color:var(--espuma);font-family:inherit;font-size:.95rem;
+  cursor:pointer;opacity:.75;
+}
+.easter-egg:focus-visible{outline:2px solid var(--espuma);outline-offset:3px}
+.easter-secreto{
+  display:block;margin-top:10px;max-width:26ch;
+  font-style:italic;color:var(--dorado);font-size:.92rem;line-height:1.5;
+}
+.easter-secreto[hidden]{display:none}
+
+/* ---------- cielo final y barco ---------- */
+.cielo-final{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.estrella{
+  position:absolute;width:3px;height:3px;border-radius:50%;
+  background:var(--pergamino);
+  top:calc(var(--i) * 11%);
+  left:calc((var(--i) * 37%) % 92% + 3%);
+  opacity:.25;
+  animation:titilar 3.4s ease-in-out infinite;
+  animation-delay:calc(var(--i) * .35s);
+}
+@keyframes titilar{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:.9;transform:scale(1.6)}}
+
+.barco-final{
+  position:relative;z-index:2;
+  width:min(46vw,150px);height:auto;
+  margin:30px auto 6px;
+  opacity:.9;
+  animation:zarparLejos 9s ease-in forwards;
+  animation-play-state:paused;
+}
+.barco-final.navegando{animation-play-state:running}
+.barco-casco{fill:var(--madera)}
+.barco-mastil{stroke:var(--pergamino);stroke-width:2}
+.barco-vela{fill:var(--pergamino);opacity:.9}
+@keyframes zarparLejos{
+  0%{transform:translateX(0) scale(1);opacity:.9}
+  100%{transform:translateX(60vw) scale(.4);opacity:0}
+}
+
+/* ---------- botón de música flotante ---------- */
+.boton-musica{
+  position:fixed;right:16px;bottom:16px;z-index:50;
+  display:flex;align-items:center;gap:8px;
+  padding:12px 16px;min-height:48px;
+  font-family:inherit;font-size:.9rem;font-weight:bold;
+  color:var(--pergamino);
+  background:rgba(8,25,43,.85);
+  border:1.5px solid var(--dorado);
+  border-radius:30px;
+  box-shadow:0 8px 20px rgba(0,0,0,.5);
+  cursor:pointer;
+  backdrop-filter:blur(3px);
+}
+.boton-musica:focus-visible{outline:2px solid var(--espuma);outline-offset:3px}
+.boton-musica[aria-pressed="true"] .icono-musica{animation:sonando 1s ease-in-out infinite}
+@keyframes sonando{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.boton-musica.sin-musica{opacity:.55}
+
+/* ---------- animaciones de entrada ---------- */
+.revelar,.revelar-cartel{opacity:0}
+.revelar{transform:translateY(26px) scale(.97);transition:opacity .8s ease,transform .8s ease}
+.revelar.visible{opacity:1;transform:none}
+
+.revelar-cartel{transform:rotate(-8deg) scale(.9);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.9,.3,1.3)}
+.revelar-cartel.visible{opacity:1;transform:rotate(-1.4deg) scale(1)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .revelar,.revelar-cartel{opacity:1;transform:none}
+  #particulas{display:none}
+}
